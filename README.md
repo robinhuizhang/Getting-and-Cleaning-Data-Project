@@ -6,7 +6,7 @@
 
 * Put run_analysis.R to  C:\Users\yourname\Documents\R\UCI HAR Dataset\
 
-* in RStudio: setwd("C:\\Users\\yourname\\Documents\\R\\UCI HAR Dataset\\")
+* in RStudio: setwd("C:\\\\Users\\\\yourname\\\\Documents\\\\R\\\\UCI HAR Dataset\\\\")
 
   and then: source("run_analysis.R")
 
