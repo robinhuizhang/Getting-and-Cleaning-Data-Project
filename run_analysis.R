@@ -28,10 +28,6 @@ names(X) <- tolower(names(X))  # see last slide of the lecture Editing Text Vari
 
 activities <- read.table("activity_labels.txt")
 activities[, 2] = gsub("_", "", tolower(as.character(activities[, 2])))
-#L <- dim(Y)[1]
-#for (i in 1:L) {
-#  Y[i,1] = tolower(as.character(activities[Y[i,1], 2]))
-#}
 Y[,1] = activities[Y[,1], 2]
 names(Y) <- "activity"
 
