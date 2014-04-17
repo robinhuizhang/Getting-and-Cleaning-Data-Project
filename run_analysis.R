@@ -22,20 +22,22 @@ indices_of_good_features <- grep("-mean\\(\\)|-std\\(\\)", features[, 2])
 X <- X[, indices_of_good_features]
 names(X) <- features[indices_of_good_features, 2]
 names(X) <- gsub("\\(|\\)", "", names(X))
+names(X) <- tolower(names(X))  # see last slide of the lecture Editing Text Variables (week 4)
 
 # 3. Uses descriptive activity names to name the activities in the data set
 
 activities <- read.table("activity_labels.txt")
+activities[, 2] = gsub("_", "", tolower(as.character(activities[, 2])))
 #L <- dim(Y)[1]
 #for (i in 1:L) {
-#  Y[i,1] = as.character(activities[Y[i,1], 2])
+#  Y[i,1] = tolower(as.character(activities[Y[i,1], 2]))
 #}
-Y[,1] = as.character(activities[Y[,1], 2])
-names(Y) <- "Activity"
+Y[,1] = activities[Y[,1], 2]
+names(Y) <- "activity"
 
 # 4. Appropriately labels the data set with descriptive activity names.
 
-names(S) <- "Subject"
+names(S) <- "subject"
 cleaned <- cbind(S, Y, X)
 write.table(cleaned, "merged_clean_data.txt")
 
@@ -51,8 +53,8 @@ row = 1
 for (s in 1:numSubjects) {
 	for (a in 1:numActivities) {
 		result[row, 1] = uniqueSubjects[s]
-		result[row, 2] = as.character(activities[a, 2])
-		tmp <- cleaned[cleaned$Subject==s & cleaned$Activity==as.character(activities[a, 2]), ]
+		result[row, 2] = activities[a, 2]
+		tmp <- cleaned[cleaned$subject==s & cleaned$activity==activities[a, 2], ]
 		result[row, 3:numCols] <- colMeans(tmp[, 3:numCols])
 		row = row+1
 	}
