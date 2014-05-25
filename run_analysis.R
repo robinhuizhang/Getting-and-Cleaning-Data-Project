@@ -1,5 +1,6 @@
 # Source of data for the project:
 # https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
+
 # This R script does the following:
 # 1. Merges the training and the test sets to create one data set.
 
@@ -7,22 +8,23 @@ tmp1 <- read.table("train/X_train.txt")
 tmp2 <- read.table("test/X_test.txt")
 X <- rbind(tmp1, tmp2)
 
-tmp1 <- read.table("train/subject_train.txt")
-tmp2 <- read.table("test/subject_test.txt")
-S <- rbind(tmp1, tmp2)
-
 tmp1 <- read.table("train/y_train.txt")
 tmp2 <- read.table("test/y_test.txt")
 Y <- rbind(tmp1, tmp2)
 
-# 2. Extracts only the measurements on the mean and standard deviation for each measurement.
+
+tmp1 <- read.table("train/subject_train.txt")
+tmp2 <- read.table("test/subject_test.txt")
+S <- rbind(tmp1, tmp2)
+
+# 2. Extracts measurements on the mean and standard deviation for each measurement.
 
 features <- read.table("features.txt")
-indices_of_good_features <- grep("-mean\\(\\)|-std\\(\\)", features[, 2])
-X <- X[, indices_of_good_features]
-names(X) <- features[indices_of_good_features, 2]
+indicesOfFeatures <- grep("-mean\\(\\)|-std\\(\\)", features[, 2])
+X <- X[, indicesOfFeatures]
+names(X) <- features[indicesOfFeatures, 2]
 names(X) <- gsub("\\(|\\)", "", names(X))
-names(X) <- tolower(names(X))  # see last slide of the lecture Editing Text Variables (week 4)
+names(X) <- tolower(names(X))  
 
 # 3. Uses descriptive activity names to name the activities in the data set
 
@@ -57,10 +59,3 @@ for (s in 1:numSubjects) {
 }
 write.table(result, "data_set_with_the_averages.txt")
 
-# res2 <- read.table("data_set_with_the_averages.txt")
-# result[4,4]
-# res2[4,4]
-# res2[4,4]==result[4,4]
-# result[6,4]
-# res2[6,4]
-# res2[6,4]==result[6,4]
