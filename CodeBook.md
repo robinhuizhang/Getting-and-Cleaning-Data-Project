@@ -9,9 +9,7 @@ The attached R script (run_analysis.R) performs the following to clean up the da
 
 train/X_train.txt with test/X_test.txt -- the result is a 10299 x 561 data frame,
 as in the original description ("Number of Instances: 10299" and "Number of Attributes: 561")
-
 train/subject_train.txt with test/subject_test.txt -- the result is a 10299 x 1 data frame with subject IDs,
-
 train/y_train.txt with test/y_test.txt -- the result is also a 10299 x 1 data frame with activity IDs.
 
 * 2.  Reads file features.txt and extracts only the measurements on the mean and standard deviation
@@ -24,15 +22,10 @@ All measurements appear to be floating point numbers in the range (-1, 1).
 * 3. Reads activity_labels.txt and applies descriptive activity names to name the activities in the data set:
 
 walking
-
 walkingupstairs
-
 walkingdownstairs
-
 sitting
-
 standing
-
 laying
 
 * 4. The script also appropriately labels the data set with descriptive names:
@@ -50,19 +43,12 @@ Subject IDs are integers between 1 and 30 inclusive.
 Names of the attributes are similar to the following:
 
 tbodyacc-mean-x 
-
 tbodyacc-mean-y 
-
 tbodyacc-mean-z 
-
 tbodyacc-std-x 
-
 tbodyacc-std-y 
-
 tbodyacc-std-z 
-
 tgravityacc-mean-x 
-
 tgravityacc-mean-y
 
 * 5. Finally, the script creates a 2nd, independent tidy data set with the average
